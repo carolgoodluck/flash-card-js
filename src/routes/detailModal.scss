@@ -1,0 +1,24 @@
+.detail-modal {
+    border: solid 0.1rem;
+    background-color: #ffff;
+    border-radius: 10px;
+    border-color: rgb(187, 173, 173);
+    width: 70%;
+    min-height: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+.detail-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-right: 10px;
+}
