@@ -1,0 +1,16 @@
+.user-info-container {
+    margin: 10px;
+    border-bottom: 1px solid;
+
+    img {
+        margin: 10px;
+        border-radius: 50%;
+        border: 1px solid rgb(229, 221, 221);
+        height: 100px;
+        width: 100px;
+    }
+
+    .user-name {
+        text-align: center;
+    }
+}

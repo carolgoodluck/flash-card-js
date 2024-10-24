@@ -1,0 +1,22 @@
+.card-container {
+    position: relative;
+    max-width: 250px;
+    height: 150px;
+    margin: 20px;
+    background: linear-gradient(to bottom right, rgb(143, 224, 227), pink);
+
+    :hover {
+        cursor: pointer;
+    }
+}
+
+.card-icon-container {
+    width: fit-content;
+    position: absolute;
+    right: 5px;
+}
+
+.card-text {
+    text-align: center;
+    line-height: 150px;
+}
