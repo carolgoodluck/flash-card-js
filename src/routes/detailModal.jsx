@@ -1,5 +1,9 @@
 import { Link, useLoaderData, Form, useNavigate } from "react-router-dom";
-import { getVocabularyById, updateVocabulary } from "../service/vocabularyService";
+import {
+  deleteVocabulary,
+  getVocabularyById,
+  updateVocabulary,
+} from "../service/vocabularyService";
 import "./detailModal.scss";
 import { useModalContext } from "../context";
 
@@ -17,21 +21,27 @@ export default function DetailModal() {
 
   const handleDetailChange = (event) => {
     vocabulary[event.target.name] = event.target.value;
-  }
+  };
 
   const handleUpdateVocabulary = async () => {
     const formData = new FormData();
-    formData.append('word', vocabulary.word);
-    formData.append('format', vocabulary.format);
-    formData.append('meaning', vocabulary.meaning);
-    formData.append('example', vocabulary.example);
-    formData.append('id', vocabulary.id);
-    formData.append('createdOn', vocabulary.createdOn);
+    formData.append("word", vocabulary.word);
+    formData.append("format", vocabulary.format);
+    formData.append("meaning", vocabulary.meaning);
+    formData.append("example", vocabulary.example);
+    formData.append("id", vocabulary.id);
+    formData.append("createdOn", vocabulary.createdOn);
     const updatedVocabulary = Object.fromEntries(formData);
     await updateVocabulary(updatedVocabulary);
     setModalOpen(false);
-    navigate('/vocabularies');
-  }
+    navigate("/vocabularies");
+  };
+
+  const handleDeleteVocabulary = async () => {
+    await deleteVocabulary(vocabulary.id);
+    setModalOpen(false);
+    navigate("/vocabularies");
+  };
 
   return (
     <div className="detail-modal">
@@ -42,26 +52,50 @@ export default function DetailModal() {
       </div>
       <Form onSubmit={handleUpdateVocabulary}>
         <div className="detail-content">
-          <input className="detail-word" name='word' defaultValue={vocabulary.word} onChange={(event) => handleDetailChange(event)} />
+          <input
+            className="detail-word"
+            name="word"
+            defaultValue={vocabulary.word}
+            onChange={handleDetailChange}
+          />
           <div className="detail-expansion">
-            <select className="detail-format" name='format' defaultValue={vocabulary.format} onChange={(event) => handleDetailChange(event)} >
+            <select
+              className="detail-format"
+              name="format"
+              defaultValue={vocabulary.format}
+              onChange={handleDetailChange}
+            >
               {formats.map((format, index) => (
                 <option key={index} value={format}>
                   {format}
                 </option>
               ))}
             </select>
-            <textarea className="detail-meaning" name='meaning' defaultValue={vocabulary.meaning} onChange={handleDetailChange} />
-            <textarea className="detail-example" name='example' defaultValue={vocabulary.example} onChange={handleDetailChange} />
+            <textarea
+              className="detail-meaning"
+              name="meaning"
+              defaultValue={vocabulary.meaning}
+              onChange={handleDetailChange}
+            />
+            <textarea
+              className="detail-example"
+              name="example"
+              defaultValue={vocabulary.example}
+              onChange={handleDetailChange}
+            />
           </div>
         </div>
         <div className="detail-footer">
-          <Link to="/vocabularies" onClick={() => setModalOpen(false)}>
-            <button type="button" className="btn btn-secondary">
-              Cancel
-            </button>
-          </Link>
-          <button type="submit" className="btn btn-primary">
+          <button
+            className="btn btn-secondary"
+            onClick={handleDeleteVocabulary}
+          >
+            Delete
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+          >
             Save
           </button>
         </div>

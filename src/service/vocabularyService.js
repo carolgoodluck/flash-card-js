@@ -16,3 +16,8 @@ export async function updateVocabulary(vocabulary){
     const { data } = await axios.post(`${API_URL}/createOne`, vocabulary);
     return data;
 }
+
+export async function deleteVocabulary(id){
+    const { data } = await axios.delete(`${API_URL}/delete/${id}`);
+    return data;
+}
