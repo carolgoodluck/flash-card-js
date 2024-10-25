@@ -25,12 +25,7 @@ export default function DetailModal() {
 
   const handleUpdateVocabulary = async () => {
     const formData = new FormData();
-    formData.append("word", vocabulary.word);
-    formData.append("format", vocabulary.format);
-    formData.append("meaning", vocabulary.meaning);
-    formData.append("example", vocabulary.example);
-    formData.append("id", vocabulary.id);
-    formData.append("createdOn", vocabulary.createdOn);
+    Object.entries(vocabulary).forEach(([key, value]) => formData.append(key, value));
     const updatedVocabulary = Object.fromEntries(formData);
     await updateVocabulary(updatedVocabulary);
     setModalOpen(false);
