@@ -6,6 +6,7 @@ import {
 } from "../service/vocabularyService";
 import "./detailModal.scss";
 import { useModalContext } from "../context";
+import { useState } from "react";
 
 export async function loader({ params }) {
   const vocabulary = await getVocabularyById(params.id);
@@ -14,6 +15,7 @@ export async function loader({ params }) {
 
 export default function DetailModal() {
   const vocabulary = useLoaderData();
+  const [familiar, setFamiliar] = useState(vocabulary.isFamiliar);
   const { setModalOpen } = useModalContext();
   const navigate = useNavigate();
 
@@ -37,12 +39,19 @@ export default function DetailModal() {
     setModalOpen(false);
     navigate("/vocabularies");
   };
+  
+  const handleFamiliarFlag = () => {
+    const newFlag = !familiar;
+    vocabulary.isFamiliar = newFlag;
+    setFamiliar(newFlag);
+  };
 
   return (
     <div className="detail-modal">
       <div className="detail-header">
+        <i className={'detail-star bi ' + (familiar ? 'bi-star': 'bi-star-fill')} onClick={handleFamiliarFlag} />
         <Link to="/vocabularies" onClick={() => setModalOpen(false)}>
-          <button type="button" className="btn-close" aria-label="Close" />
+          <i className="detail-close bi bi-x-circle" />
         </Link>
       </div>
       <Form onSubmit={handleUpdateVocabulary}>

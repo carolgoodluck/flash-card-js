@@ -13,7 +13,20 @@
 .detail-header {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     margin: 10px;
+    gap: 5px;
+
+    .detail-star {
+        color: rgb(240, 205, 8);
+        font-size: 20px;
+        margin-bottom: 2px;
+        cursor: pointer;
+    }
+
+    .detail-close {
+        font-size: 20px;
+    }
 }
 
 .detail-content {
