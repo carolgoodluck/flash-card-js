@@ -9,6 +9,9 @@ import { ModalContext } from "../context";
 
 export async function loader() {
   const vocabularies = await getAllVocabularies();
+  vocabularies.sort((x, y) => {
+    return Date.parse(x.createdOn) - Date.parse(y.createdOn);
+  });
   return vocabularies;
 }
 
@@ -26,11 +29,12 @@ export default function Root() {
         <div className={'card-list ' + (modalOpen ? 'page-disabled' : '')}>
           {vocabularies.map((vocabulary) => (
             <Link
+              className="card-link"
               to={vocabulary.id}
               key={vocabulary.id}
               onClick={() => setModalOpen(true)}
             >
-              <WordCard word={vocabulary.word} />
+              <WordCard className='card-container' word={vocabulary.word} />
             </Link>
           ))}
         </div>

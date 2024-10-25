@@ -16,9 +16,32 @@
     margin: 10px;
 }
 
+.detail-content {
+    display: flex;
+    gap: 5px;
+
+    .detail-word {
+        border: none;
+        text-align: center;
+        flex: 1;
+    }
+
+    .detail-expansion {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        flex: 9;
+        margin-right: 10px;
+
+        .detail-format {
+            width: fit-content;
+        }
+    }
+}
+
 .detail-footer {
     display: flex;
     justify-content: flex-end;
     gap: 5px;
-    margin-right: 10px;
+    margin: 10px;
 }
