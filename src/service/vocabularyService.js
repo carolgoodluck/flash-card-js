@@ -21,3 +21,13 @@ export async function deleteVocabulary(id){
     const { data } = await axios.delete(`${API_URL}/delete/${id}`);
     return data;
 }
+
+export async function getFamiliarVocabularies() {
+    const { data } = await axios.get(`${API_URL}/familiar`);
+    return data;
+}
+
+export async function getUnfamiliarVocabularies() {
+    const { data } = await axios.get(`${API_URL}/unfamiliar`);
+    return data;
+}

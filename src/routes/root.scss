@@ -2,17 +2,8 @@
   display: flex;
 }
 
-.card-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .card-link {
   text-decoration: none;
   width: fit-content;
 }
 
-.page-disabled {
-  filter: blur(5px);
-  pointer-events: none;
-}

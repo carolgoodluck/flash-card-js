@@ -1,0 +1,10 @@
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.page-disabled {
+  filter: blur(5px);
+  pointer-events: none;
+  position: relative;
+}

@@ -1,4 +1,4 @@
-import { Link, useLoaderData, Form, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, Form, useNavigate, useOutletContext } from "react-router-dom";
 import {
   deleteVocabulary,
   getVocabularyById,
@@ -16,7 +16,8 @@ export async function loader({ params }) {
 export default function DetailModal() {
   const vocabulary = useLoaderData();
   const [familiar, setFamiliar] = useState(vocabulary.isFamiliar);
-  const { setModalOpen } = useModalContext();
+  const {setModalOpen} = useModalContext();
+  
   const navigate = useNavigate();
 
   const formats = ["verb", "noun", "adj", "adv"];
@@ -31,13 +32,13 @@ export default function DetailModal() {
     const updatedVocabulary = Object.fromEntries(formData);
     await updateVocabulary(updatedVocabulary);
     setModalOpen(false);
-    navigate("/vocabularies");
+    navigate(-1);
   };
 
   const handleDeleteVocabulary = async () => {
     await deleteVocabulary(vocabulary.id);
     setModalOpen(false);
-    navigate("/vocabularies");
+    navigate(-1);
   };
   
   const handleFamiliarFlag = () => {
@@ -50,7 +51,7 @@ export default function DetailModal() {
     <div className="detail-modal">
       <div className="detail-header">
         <i className={'detail-star bi ' + (familiar ? 'bi-star': 'bi-star-fill')} onClick={handleFamiliarFlag} />
-        <Link to="/vocabularies" onClick={() => setModalOpen(false)}>
+        <Link to={-1} onClick={() => setModalOpen(false)}>
           <i className="detail-close bi bi-x-circle" />
         </Link>
       </div>
